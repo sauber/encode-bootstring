@@ -1,14 +1,43 @@
 # $Id: Bootstring.pm,v 1.9 2004/06/01 08:52:29 sauber Exp $
 # Encode and decode utf8 into a set of basic code points
 
-package Bootstring;
+package Encode::Bootstring;
 
 use strict;
 use integer;
 use utf8;
 
-# $Id: Bootstring.pm,v 1.9 2004/06/01 08:52:29 sauber Exp $
-$Bootstring::VERSION = $Bootstring::VERSION = '$Revision: 1.9 $';
+=head1 NAME
+
+Encode::Bootstring - Encode and decode utf8 into a set of basic code points
+
+=head1 VERSION
+
+VERSION 0.01
+
+=cut
+
+our $VERSION = '0.01';
+
+=head1 SYNOPSIS
+
+  $BS = new Encode::Bootstring(
+      BASIC => ["a".."z", "A".."Z", "0".."9"],
+      TMAX => 53,
+      SKEW => 78,
+      INITIAL_BIAS => 32,
+      TMIN => 38,
+      DAMP => 40,
+      DELIMITER => '_',
+  );
+
+  $bootstring = $BS->encode($utf8);
+  $utf8 = $BS->encode($bootstring);
+
+All parameters are optional. Refer to RFC3492 for details of each parameter.
+The above parameters are suitable for encoding a variety of alphabets
+to ascii letters and numbers.
+
 
 # Constructor
 #
@@ -316,15 +345,62 @@ sub decode{
   return $res;
 }
 
-__END__;
+=head1 AUTHOR
 
-=head1 NAME
+Soren Dossing, C<< <netcom at sauber.net> >>
 
-Bootstring - Encode a large symbol set into a small symbol set
+=head1 BUGS
+Please report any bugs or feature requests to C<bug-encode-bootstring at rt.cpan.org>, or through
+the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Encode-Boo
+tstring>.  I will be notified, and then you'll
+automatically be notified of progress on your bug as I make changes.
 
-=head1 LICENSE
+=head1 SUPPORT
 
-Artistic License
-http://www.opensource.org/licenses/artistic-license.php
+You can find documentation for this module with the perldoc command.
+
+    perldoc Encode::Bootstring
+
+
+You can also look for information at:
+
+=over 4
+
+=item * RT: CPAN's request tracker
+
+L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Encode-Bootstring>
+
+=item * AnnoCPAN: Annotated CPAN documentation
+
+L<http://annocpan.org/dist/Encode-Bootstring>
+
+=item * CPAN Ratings
+
+L<http://cpanratings.perl.org/d/Encode-Bootstring>
+
+=item * Search CPAN
+
+L<http://search.cpan.org/dist/Encode-Bootstring/>
+
+=back
+
+
+=head1 ACKNOWLEDGEMENTS
+
+Adam M. Costello for punycode reference implementation, and for advice and
+review of this more generic module.
+
+=head1 COPYRIGHT & LICENSE
+
+Copyright 2009 Soren Dossing.
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of either: the GNU General Public License as published
+by the Free Software Foundation; or the Artistic License.
+
+See http://dev.perl.org/licenses/ for more information.
+
 
 =cut
+
+1; # End of Encode::Bootstring
