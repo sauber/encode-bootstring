@@ -38,6 +38,7 @@ All parameters are optional. Refer to RFC3492 for details of each parameter.
 The above parameters are suitable for encoding a variety of alphabets
 to ascii letters and numbers.
 
+=cut
 
 # Constructor
 #
@@ -63,6 +64,7 @@ sub _initialize {
   %{$self} = ( %{$self}, @_ );
 
   # BASE is number of basic code points
+  $self->{BASIC} ||= ["a".."z", "A".."Z", "0".."9"];
   $self->{BASE} = scalar @{$self->{BASIC}};
 
   # Defaults
@@ -162,6 +164,14 @@ sub adapt {
                 / ($delta+$self->{SKEW}) );
 }
 
+=head2 encode
+
+  $encoded = $BS->encode( $raw );
+
+Encodes raw data.
+
+=cut
+
 # Encoding routine
 #
 sub encode {
@@ -260,6 +270,14 @@ sub min {
   for (@_) { $min = $_ if $_ <= $min }
   return $min;
 }
+
+=head2 decode
+
+  $original = $BS->decode( $encoded );
+
+Decode bootstring encoded data.
+
+=cut
 
 # Bootstring decoding routing
 #
