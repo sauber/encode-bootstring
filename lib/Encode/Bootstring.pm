@@ -34,6 +34,17 @@ our $VERSION = '0.02';
   $bootstring = $BS->encode($utf8);
   $utf8 = $BS->encode($bootstring);
 
+=head1 DESCRIPTION
+
+Punycode is a specific use of bootstring encoding; it encodes the
+larger code set to preprogrammed code set suitable for DNS names, such
+as ASCII characters and numbers. It also ignores casing of letters.
+
+Bootstring on the other hand is the generalised concept and allows any
+code set to be encoded as any other smaller code set.
+
+=head1 INTERFACE
+
 All parameters are optional. Refer to RFC3492 for details of each parameter.
 The above parameters are suitable for encoding a variety of alphabets
 to ascii letters and numbers.
@@ -121,7 +132,7 @@ sub nchr {
   #return $_[0] > $self->{maxord} ? chr($_[0]) : $self->{chr}{$_[0]} ;
   return $c > $self->{maxord} ? chr($c) : $self->{chr}{$c} ;
 }
- 
+
 # Input char output char using modified table
 #
 sub nord {
@@ -368,9 +379,10 @@ sub decode{
 Soren Dossing, C<< <netcom at sauber.net> >>
 
 =head1 BUGS
+
 Please report any bugs or feature requests to C<bug-encode-bootstring at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Encode-Boo
-tstring>.  I will be notified, and then you'll
+the web interface at
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Encode-Bootstring>. I will be notified, and then you'll
 automatically be notified of progress on your bug as I make changes.
 
 =head1 SUPPORT
