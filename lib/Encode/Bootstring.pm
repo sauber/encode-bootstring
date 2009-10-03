@@ -13,11 +13,11 @@ Encode::Bootstring - Encode and decode utf8 into a set of basic code points
 
 =head1 VERSION
 
-VERSION 0.02
+VERSION 0.03
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 =head1 SYNOPSIS
 
